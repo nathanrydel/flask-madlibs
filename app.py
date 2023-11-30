@@ -12,20 +12,21 @@ debug = DebugToolbarExtension(app)
 @app.get("/")
 def show_questions():
     """Render question form"""
-    # grab prompts from stories;
-    # send to questions page
+
     prompts = silly_story.prompts
 
-    print(prompts)
+    # TypeError: Story object is not subscriptable
+    # prompts = silly_story["prompts"]
 
     return render_template("questions.html",
                            prompts=prompts)
 
 
-# TODO: Add a route, /results, that shows the resulting story for those answers
 @app.get("/results")
 def show_results():
-    # TODO: add docstring
-    """"""
+    """Render complete story on the results endpoint"""
 
-    ...
+    # use the get_result_text to complete the story with the input
+    complete_story = silly_story.get_result_text(request.args)
+
+    return render_template("results.html", complete_story=complete_story)
