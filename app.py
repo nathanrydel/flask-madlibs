@@ -8,23 +8,18 @@ app.config['SECRET_KEY'] = "secret"
 
 debug = DebugToolbarExtension(app)
 
-# TODO: create a route for the homepage that shows a form asking for madlibs
-# DO NOT hardcode the form asking these exact questions
-
 
 @app.get("/")
-def index():
-    """Render homepage form"""
-    #grab prompts from stories;
-    #send to questions page
-    prompts = silly_story["prompts"]
+def show_questions():
+    """Render question form"""
+    # grab prompts from stories;
+    # send to questions page
+    prompts = silly_story.prompts
+
+    print(prompts)
 
     return render_template("questions.html",
-                           prompts=prompts
-                           )
-    # print("html is: ", html)
-
-    # return html
+                           prompts=prompts)
 
 
 # TODO: Add a route, /results, that shows the resulting story for those answers
