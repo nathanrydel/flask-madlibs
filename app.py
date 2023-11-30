@@ -15,11 +15,16 @@ debug = DebugToolbarExtension(app)
 @app.get("/")
 def index():
     """Render homepage form"""
+    #grab prompts from stories;
+    #send to questions page
+    prompts = silly_story["prompts"]
 
-    html = render_template("questions.html")
-    print("html is: ", html)
+    return render_template("questions.html",
+                           prompts=prompts
+                           )
+    # print("html is: ", html)
 
-    return html
+    # return html
 
 
 # TODO: Add a route, /results, that shows the resulting story for those answers
